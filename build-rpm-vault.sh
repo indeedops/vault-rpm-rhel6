@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-VERSION=0.2.0
+VERSION=${1:-"0.6.5"}
 ARCH=x86_64
 NAME=vault
 
@@ -18,11 +18,11 @@ case "${ARCH}" in
         ;;
 esac
 
-URL="https://dl.bintray.com/mitchellh/${NAME}/${ZIP}"
+URL="https://releases.hashicorp.com/vault/${VERSION}/${ZIP}"
 echo $"Creating ${NAME} ${ARCH} RPM build file version ${VERSION}"
 
 # fetching vault
-curl -k -L -o $ZIP $URL || {
+curl -1 -k -L -o $ZIP $URL || {
     echo $"URL or version not found!" >&2
     exit 1
 }
